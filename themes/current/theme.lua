@@ -2,7 +2,7 @@ theme            = {}
 theme.icons      = os.getenv("HOME") .. "/.config/awesome/themes/current/icons/"
 theme.wallpaper  = os.getenv("HOME") .. "/.config/awesome/themes/current/wallpapers/wallpaper.jpg"
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
-theme.font       = "Cantarell Bold 10"
+theme.font       = "DejaVu Sans 9"
 
 theme.fg_normal  = "#cccccc"
 theme.fg_focus   = "#ffffff"
@@ -18,10 +18,10 @@ theme.clockgf    = "#99d1ce"
 
 -- | Borders | --
 
-theme.border_width  = 0
-theme.border_normal = "#000000"
-theme.border_focus  = "#000000"
-theme.border_marked = "#000000"
+theme.border_width  = 1
+theme.border_normal = "#664C04"
+theme.border_focus  = "#F5B70F"
+theme.border_marked = "#F5390F"
 
 -- | Menu | --
 
@@ -36,8 +36,9 @@ theme.layout_tileleft   = theme.icons .. "/panel/layouts/tileleft.png"
 theme.layout_tilebottom = theme.icons .. "/panel/layouts/tilebottom.png"
 theme.layout_tiletop    = theme.icons .. "/panel/layouts/tiletop.png"
 theme.layout_max        = theme.icons .. "/panel/layouts/max.png"
-theme.layout_fullscreen        = theme.icons .. "/panel/layouts/maxfullscreen.png"
+theme.layout_fullscreen = theme.icons .. "/panel/layouts/maxfullscreen.png"
 theme.layout_magnifier  = theme.icons .. "/panel/layouts/magnifier.png"
+theme.layout_fairv      = theme.icons .. "/panel/layouts/fair.png"
 
 -- | Taglist | --
 
@@ -45,11 +46,11 @@ theme.taglist_bg_empty    = "png:" .. theme.icons .. "/panel/taglist/empty.png"
 theme.taglist_bg_occupied = "png:" .. theme.icons .. "/panel/taglist/occupied.png"
 theme.taglist_bg_urgent   = "png:" .. theme.icons .. "/panel/taglist/urgent.png"
 theme.taglist_bg_focus    = "png:" .. theme.icons .. "/panel/taglist/focus.png"
-theme.taglist_font        = "Cantarell Bold 10"
+theme.taglist_font        = theme.font
 
 -- | Tasklist | --
 
-theme.tasklist_font                 = "Cantarell Bold 10"
+theme.tasklist_font                 = theme.font
 theme.tasklist_disable_icon         = false
 theme.tasklist_bg_normal            = "png:" .. theme.icons .. "/panel/tasklist/normal.png"
 theme.tasklist_bg_focus             = "png:" .. theme.icons .. "/panel/tasklist/focus.png"
