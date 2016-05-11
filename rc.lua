@@ -525,10 +525,4 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- {{{ Autorun apps
-awful.util.spawn("guake", false)
-awful.util.spawn("kupfer --no-splash", false)
-awful.util.spawn("dropbox start", false)
-awful.util.spawn("/opt/telegram/Telegram", false)
-awful.util.spawn("/usr/share/slack/slack %U", false)
--- }}}
+--require("autostart")
