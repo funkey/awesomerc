@@ -1,10 +1,14 @@
+local awful = require("awful")
+
 function run_once(cmd, findme)
   if not findme then
     findme = cmd
     firstspace = cmd:find(" ")
+    name_end = 16
     if firstspace then
-      findme = cmd:sub(0, firstspace-1)
+      name_end = math.min(name_end, firstspace)
     end
+    findme = cmd:sub(0, name_end-1)
   end
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
