@@ -4,24 +4,30 @@ theme.wallpaper  = os.getenv("HOME") .. "/.config/awesome/themes/current/wallpap
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
 theme.font       = "DejaVu Sans 9" -- I'd like to have DejaVu, but it doesn't work
 
-theme.fg_normal  = "#664C04"
-theme.fg_focus   = "#F5B70F"
-theme.fg_urgent  = "#00ffff"
+theme.color_primary = "#FE9325"
+theme.color_darker  = "#B4691C"
+theme.color_alert   = "#1C67B4"
+theme.color_bg      = "#000000"
 
-theme.bg_normal  = "#000000"
-theme.bg_focus   = "#000000"
-theme.bg_urgent  = "#000000"
-theme.bg_systray = "#000000"
--- theme.bg_systray = "#000000" .. 0.01 -- transparent tray fix 
+-- Text colors
+theme.fg_normal  = theme.color_primary
+theme.fg_focus   = theme.color_primary
+theme.fg_urgent  = theme.color_alert
 
-theme.clockgf    = "#99d1ce"
+theme.bg_normal  = theme.color_bg
+theme.bg_focus   = theme.color_bg
+theme.bg_urgent  = theme.color_bg
+theme.bg_systray = theme.color_bg
+
+-- What is that? gf supposed to be fg?
+theme.clockgf    = "#ff0000"
 
 -- | Borders | --
 
-theme.border_width  = 1
-theme.border_normal = "#664C04"
-theme.border_focus  = "#F5B70F"
-theme.border_marked = "#F5390F"
+theme.border_width  = 2
+theme.border_normal = theme.color_bg
+theme.border_focus  = theme.color_primary
+theme.border_marked = theme.color_alert
 
 -- | Menu | --
 
@@ -53,12 +59,12 @@ theme.taglist_font        = theme.font
 theme.tasklist_font                 = theme.font
 theme.tasklist_disable_icon         = false
 -- inverted colors for tasklist
-theme.tasklist_bg_normal            = theme.fg_normal --"png:" .. theme.icons .. "/panel/tasklist/normal.png"
-theme.tasklist_bg_focus             = theme.fg_focus  --"png:" .. theme.icons .. "/panel/tasklist/focus.png"
-theme.tasklist_bg_urgent            = theme.fg_urgent --"png:" .. theme.icons .. "/panel/tasklist/urgent.png"
-theme.tasklist_fg_normal            = theme.bg_normal
-theme.tasklist_fg_focus             = theme.bg_focus
-theme.tasklist_fg_urgent            = theme.bg_urgent
+theme.tasklist_bg_normal            = theme.color_darker
+theme.tasklist_bg_focus             = theme.color_primary
+theme.tasklist_bg_urgent            = theme.color_alert
+theme.tasklist_fg_normal            = theme.color_bg
+theme.tasklist_fg_focus             = theme.color_bg
+theme.tasklist_fg_urgent            = theme.color_bg
 theme.tasklist_floating             = ""
 theme.tasklist_sticky               = ""
 theme.tasklist_ontop                = ""
