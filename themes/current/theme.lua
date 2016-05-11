@@ -2,8 +2,7 @@ theme            = {}
 theme.icons      = os.getenv("HOME") .. "/.config/awesome/themes/current/icons/"
 theme.wallpaper  = os.getenv("HOME") .. "/.config/awesome/themes/current/wallpapers/wallpaper.jpg"
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
---theme.font       = "DejaVu Sans 9" -- I'd like to have DejaVu, but it doesn't work
-theme.font       = "sans bold 11"
+theme.font       = "Ubuntu 11"
 
 theme.color_black   = "#111111"
 theme.color_gray    = "#555555"
