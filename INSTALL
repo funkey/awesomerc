@@ -1,0 +1,11 @@
+Ubuntu 16.04
+============
+
+sudo apt-get install \
+  awesome \
+  awesome-extra \
+  luarocks \
+  libgirepository1.0-dev \
+  udevil
+
+sudo luarocks install lgi
