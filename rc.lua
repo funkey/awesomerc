@@ -205,7 +205,7 @@ for s = 1, screen.count() do
     -- Create a systray widget
     local mysystray = wibox.widget.systray()
     local mysystraymargin = wibox.layout.margin()
-    mysystraymargin:set_margins(6)
+    mysystraymargin:set_margins(1)
     mysystraymargin:set_widget(mysystray)
 
     -- Create the wibox
