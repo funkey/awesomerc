@@ -1,58 +1,91 @@
 local wibox = require("wibox")
 local awful = require("awful")
+local vicious = require("vicious")
 local helpers = require("./helpers")
+local common = require("./common")
 
+-- widget settings
+alsa_channel = "Master"
+alsa_step = "5%"
+alsa_mixer = terminal .. " -e alsamixer"
+
+-- create the widget
 local widget = {}
-
--- {{{ Define subwidgets
-widget.text = wibox.widget.textbox()
 widget.icon = wibox.widget.imagebox()
+widget.bar = common:create_progressbar()
+widget.bar_tip = awful.tooltip({ objects = { widget.bar }})
 
--- Change the draw method so icons can be drawn smaller
-helpers:set_draw_method(widget.icon)
--- }}}
+-- set mouse bindings
+bindings = awful.util.table.join(
 
--- {{{ Define interactive behaviour
-widget.icon:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.util.spawn("gnome-control-center sound") end)
-))
--- }}}
+    awful.button({ }, 1, function()
+        awful.util.spawn(alsa_mixer)
+    end),
 
--- {{{ Update method
-function widget:update()
-    local fd = io.popen("amixer sget Master")
-    local status = fd:read("*all")
-    fd:close()
- 
-    local volume = tonumber(string.match(status, "(%d?%d?%d)%%")) or 0
+    awful.button({ }, 3, function()
+      widget:mute()
+    end),
 
-    widget.text:set_markup(volume .. "%")
+    awful.button({ }, 4, function()
+      widget:raise()
+    end),
 
-    local iconpath = "/usr/share/icons/Adwaita/scalable/status/audio-volume"
+    awful.button({ }, 5, function()
+      widget:lower()
+    end)
+)
+widget.icon:buttons(bindings)
+widget.bar:buttons(bindings)
 
-    if string.find(status, "[off]", 1, true) or volume <= 0.0 then
-        iconpath = iconpath .. "-muted"
+-- register bar with vicious, update tip and icon in passing
+vicious.register(widget.bar.widget, vicious.widgets.volume, function (bar, args)
 
-    elseif volume < 25 then
-        iconpath = iconpath .. "-low"
-    
-    elseif volume > 75 then
-        iconpath = iconpath .. "-high"
+    local volume = args[1]
+
+    if args[2] == "♩" then
+
+        widget.bar_tip:set_text(" [Muted] ")
+        state = "muted"
+        volume = 0
 
     else
-        iconpath = iconpath .. "-medium"
+
+      widget.bar_tip:set_text(" " .. alsa_channel .. ": " .. volume .. "% ")
+
+      if volume == 0 then
+          state = "low-zero"
+      elseif volume < 25 then
+          state = "low"
+      elseif volume > 75 then
+          state = "high"
+      else
+          state = "medium"
+      end
 
     end
 
-    iconpath = iconpath .. "-symbolic.svg"
-    
-    widget.icon:set_image(iconpath)
+    widget.icon:set_image(theme.icons .. "status/audio-volume-" .. state .. "-panel.svg")
 
+    return volume
+
+end, 5, alsa_channel) -- updated every 5 seconds, but use of keys/mouse will force update
+
+function widget:raise()
+
+    awful.util.spawn("amixer sset " .. alsa_channel .. " " .. alsa_step .. "+")
+    helpers:delay(function() vicious.force({ widget.bar.widget }) end, 0.1)
 end
--- }}}
 
--- {{{ Listen
-helpers:listen(widget)
--- }}}
+function widget:lower()
+
+    awful.util.spawn("amixer sset " .. alsa_channel .. " " .. alsa_step .. "-")
+    helpers:delay(function() vicious.force({ widget.bar.widget }) end, 0.1)
+end
+
+function widget:mute()
+
+    awful.util.spawn("amixer -D pulse sset " .. alsa_channel .. " toggle")
+    helpers:delay(function() vicious.force({ widget.bar.widget }) end, 0.1)
+end
 
 return widget

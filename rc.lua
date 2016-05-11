@@ -15,11 +15,6 @@ local menubar = require("menubar")
 -- Custom libraries
 local helpers = require("helpers")
 
--- Custom widgets
-local myvolume = require("volume")
-local mybattery = require("battery")
-local mywifi = require("wifi")
-
 -- Load Debian menu entries
 require("debian.menu")
 
@@ -99,6 +94,11 @@ for s = 1, screen.count() do
     tags[s] = awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, layouts[1])
 end
 -- }}}
+
+-- Custom widgets
+local myvolume = require("volume")
+local mybattery = require("battery")
+local mywifi = require("wifi")
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -223,7 +223,7 @@ for s = 1, screen.count() do
     if s == 1 then
         right_layout:add(mysystraymargin)
         right_layout:add(myvolume.icon)
-        right_layout:add(myvolume.text)
+        right_layout:add(myvolume.bar)
 
         if mybattery.hasbattery then
             right_layout:add(separator)
@@ -264,21 +264,15 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key binding functions
 function raisevolume()
-    awful.util.spawn("amixer set Master 9%+", false)
-
-    helpers:delay(myvolume.update, 0.1)
+  myvolume:raise()
 end
 
 function lowervolume()
-    awful.util.spawn("amixer set Master 9%-", false)
-
-    helpers:delay(myvolume.update, 0.1)
+  myvolume:lower()
 end
 
 function mutevolume()
-    awful.util.spawn("amixer -D pulse set Master 1+ toggle", false)
-
-    helpers:delay(myvolume.update, 0.1)
+  myvolume:mute()
 end
 -- }}}
 

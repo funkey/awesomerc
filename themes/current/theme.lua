@@ -7,17 +7,19 @@ theme.font       = "DejaVu Sans 9" -- I'd like to have DejaVu, but it doesn't wo
 theme.color_primary = "#FE9325"
 theme.color_darker  = "#B4691C"
 theme.color_alert   = "#1C67B4"
-theme.color_bg      = "#000000"
+theme.color_black   = "#000000"
+theme.color_gray    = "#555555"
+theme.color_white   = "#FFFFFF"
 
 -- Text colors
 theme.fg_normal  = theme.color_primary
 theme.fg_focus   = theme.color_primary
 theme.fg_urgent  = theme.color_alert
 
-theme.bg_normal  = theme.color_bg
-theme.bg_focus   = theme.color_bg
-theme.bg_urgent  = theme.color_bg
-theme.bg_systray = theme.color_bg
+theme.bg_normal  = theme.color_black
+theme.bg_focus   = theme.color_black
+theme.bg_urgent  = theme.color_black
+theme.bg_systray = theme.color_black
 
 -- What is that? gf supposed to be fg?
 theme.clockgf    = "#ff0000"
@@ -25,7 +27,7 @@ theme.clockgf    = "#ff0000"
 -- | Borders | --
 
 theme.border_width  = 2
-theme.border_normal = theme.color_bg
+theme.border_normal = theme.color_black
 theme.border_focus  = theme.color_primary
 theme.border_marked = theme.color_alert
 
@@ -62,9 +64,9 @@ theme.tasklist_disable_icon         = false
 theme.tasklist_bg_normal            = theme.color_darker
 theme.tasklist_bg_focus             = theme.color_primary
 theme.tasklist_bg_urgent            = theme.color_alert
-theme.tasklist_fg_normal            = theme.color_bg
-theme.tasklist_fg_focus             = theme.color_bg
-theme.tasklist_fg_urgent            = theme.color_bg
+theme.tasklist_fg_normal            = theme.color_black
+theme.tasklist_fg_focus             = theme.color_black
+theme.tasklist_fg_urgent            = theme.color_black
 theme.tasklist_floating             = ""
 theme.tasklist_sticky               = ""
 theme.tasklist_ontop                = ""
