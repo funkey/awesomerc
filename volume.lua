@@ -65,6 +65,7 @@ vicious.register(widget.bar.widget, vicious.widgets.volume, function (bar, args)
     end
 
     widget.icon:set_image(theme.icons .. "status/audio-volume-" .. state .. "-panel.svg")
+    widget.icon:set_resize(false)
 
     return volume
 

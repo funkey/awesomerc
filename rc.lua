@@ -209,7 +209,7 @@ for s = 1, screen.count() do
     mysystraymargin:set_widget(mysystray)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", height = 16, screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height = theme.wibox_height, screen = s })
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()

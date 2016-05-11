@@ -15,8 +15,8 @@ awful.util.spawn_with_shell("$HOME/local/bin/setup_inputs.sh")
 -- network manager
 run_once("nm-applet &")
 
--- convenience? I don't remember what we needed this for
---run_once("gnome-settings-daemon &")
+-- we just need it to properly set the icon theme to the nice ubuntu-mono-dark
+run_once("gnome-settings-daemon &")
 
 -- be quiet
 run_once("sudo thinkfan -b 1")

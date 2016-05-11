@@ -31,6 +31,10 @@ theme.border_normal = theme.color_black
 theme.border_focus  = theme.color_primary
 theme.border_marked = theme.color_alert
 
+-- | Wibox |
+
+theme.wibox_height = 24 -- matching size of ubuntu icons
+
 -- | Menu | --
 
 theme.menu_height = 16
