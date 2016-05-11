@@ -1,7 +1,6 @@
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-local common = require("awful.widget.common") 
 awful.rules = require("awful.rules")
 require("awful.autofocus")
 -- Widget and layout library
@@ -14,6 +13,7 @@ local menubar = require("menubar")
 
 -- Custom libraries
 local helpers = require("helpers")
+local common = require("common") 
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -180,11 +180,9 @@ mytasklist.buttons = awful.util.table.join(
 
 for s = 1, screen.count() do
     -- Widgets
-    local separator = wibox.widget.imagebox()
-    separator:set_image(beautiful.get().spr2px)
+    local separator = common:create_horizontal_separator(2)
+    local separatorbig = common:create_horizontal_separator(5)
 
-    local separatorbig = wibox.widget.imagebox()
-    separatorbig:set_image(beautiful.get().spr5px)
 
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()

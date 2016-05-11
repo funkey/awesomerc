@@ -26,4 +26,20 @@ function common:create_progressbar()
 
 end
 
+function common:create_horizontal_separator(width)
+
+  space = wibox.widget.textbox()
+  space:set_text(" ")
+
+  marginbox = wibox.layout.margin()
+  marginbox:set_left(0)
+  marginbox:set_right(width)
+  marginbox:set_top(0)
+  marginbox:set_bottom(0)
+  marginbox:set_widget(space)
+
+  return marginbox
+
+end
+
 return common
