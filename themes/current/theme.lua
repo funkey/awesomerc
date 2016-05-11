@@ -4,9 +4,9 @@ theme.wallpaper  = os.getenv("HOME") .. "/.config/awesome/themes/current/wallpap
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
 theme.font       = "DejaVu Sans 9" -- I'd like to have DejaVu, but it doesn't work
 
-theme.color_black   = "#000000"
+theme.color_black   = "#111111"
 theme.color_gray    = "#555555"
-theme.color_white   = "#FFFFFF"
+theme.color_white   = "#CCCCCC"
 
 theme.color_primary = theme.color_white
 theme.color_darker  = theme.color_gray
