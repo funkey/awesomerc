@@ -4,12 +4,13 @@ theme.wallpaper  = os.getenv("HOME") .. "/.config/awesome/themes/current/wallpap
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
 theme.font       = "DejaVu Sans 9" -- I'd like to have DejaVu, but it doesn't work
 
-theme.color_primary = "#FE9325"
-theme.color_darker  = "#B4691C"
-theme.color_alert   = "#1C67B4"
 theme.color_black   = "#000000"
 theme.color_gray    = "#555555"
 theme.color_white   = "#FFFFFF"
+
+theme.color_primary = theme.color_white
+theme.color_darker  = theme.color_gray
+theme.color_alert   = "#1C67B4"
 
 -- Text colors
 theme.fg_normal  = theme.color_primary
@@ -64,13 +65,12 @@ theme.taglist_font        = theme.font
 
 theme.tasklist_font                 = theme.font
 theme.tasklist_disable_icon         = false
--- inverted colors for tasklist
-theme.tasklist_bg_normal            = theme.color_darker
-theme.tasklist_bg_focus             = theme.color_primary
-theme.tasklist_bg_urgent            = theme.color_alert
-theme.tasklist_fg_normal            = theme.color_black
-theme.tasklist_fg_focus             = theme.color_black
-theme.tasklist_fg_urgent            = theme.color_black
+theme.tasklist_bg_normal            = theme.color_black
+theme.tasklist_bg_focus             = theme.color_black
+theme.tasklist_bg_urgent            = theme.color_black
+theme.tasklist_fg_normal            = theme.color_gray
+theme.tasklist_fg_focus             = theme.color_white
+theme.tasklist_fg_urgent            = theme.color_alert
 theme.tasklist_floating             = ""
 theme.tasklist_sticky               = ""
 theme.tasklist_ontop                = ""
