@@ -123,100 +123,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- {{{ Wibox
--- Define custom tasklist updater
-function tasklistupdate(w, buttons, labelfunc, data, objects)
-    w:reset()
-
-    -- Main container
-    local l = wibox.layout.fixed.horizontal()
-    l:fill_space(true)
-
-    -- Text widget for displaying the name of the focused client
-    local activeclient = nil;
-
-    -- The inactive icons container
-    local inactiveclients = wibox.layout.fixed.horizontal()
-
-    -- Loop through all clients
-    for i, o in ipairs(objects) do
-        -- Init widget cache
-        local cache = data[o]
-
-        -- Get client informaion
-        local text, bg, bg_image, icon = labelfunc(o)
-        
-        -- If cache is defined, use cache
-        if cache then
-            icon = cache.icon
-            label = cache.label
-            background = cache.background
-    
-        -- Else start from scratch
-        else
-            -- Inactive icon widgets
-            icon = wibox.widget.imagebox()
-            background = wibox.widget.background()
-            background:set_widget(icon)
-
-            -- Active label widget
-            label = wibox.widget.textbox()
-
-            -- Cache widgets
-            data[o] = {
-                icon = icon,
-                label = label,
-                background = background
-            }
-           
-            -- Make icon clickable
-            icon:buttons(common.create_buttons(buttons, o))
-            
-            -- Use custom drawing method for drawing icons
-            helpers:set_draw_method(icon)
-        end
-
-        -- Use a fallback for clients without icons
-        local iconsrc = o.icon
-
-        if iconsrc == nil or iconsrc == "" then
-            iconsrc = "/usr/share/icons/Adwaita/scalable/emblems/emblem-system-symbolic.svg"
-        end
-
-        -- Update background
-        background:set_bg(bg)
-
-        -- Update icon image
-        icon:set_image(iconsrc)
-
-        -- Always add the background and icon
-        inactiveclients:add(background)
-        
-        -- If client is focused, add text and set as active client
-        if bg == theme.tasklist_bg_focus then
-            local labeltext = text
-
-            -- Append (F) if client is floating
-            if awful.client.floating.get(o) then
-                labeltext = labeltext .. " (F)"
-            end
-
-            label:set_markup("   " .. labeltext .. "   ")
-       
-            activeclient = label
-        end
-    end
-    
-    -- Add the inactive clients as icons first
-    l:add(inactiveclients)
-
-    -- Then add the active client as a text widget
-    if activeclient then
-        l:add(activeclient)
-    end
-    
-    -- Add the main container to the parent widget
-    w:add(l)
-end
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
@@ -294,7 +200,7 @@ for s = 1, screen.count() do
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
     -- Create a tasklist widget
-    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons, nil, tasklistupdate)
+    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create a systray widget
     local mysystray = wibox.widget.systray()
@@ -303,7 +209,7 @@ for s = 1, screen.count() do
     mysystraymargin:set_widget(mysystray)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", height = 32, screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height = 16, screen = s })
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()

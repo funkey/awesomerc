@@ -2,10 +2,10 @@ theme            = {}
 theme.icons      = os.getenv("HOME") .. "/.config/awesome/themes/current/icons/"
 theme.wallpaper  = os.getenv("HOME") .. "/.config/awesome/themes/current/wallpapers/wallpaper.jpg"
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
-theme.font       = "DejaVu Sans 9"
+theme.font       = "DejaVu Sans 9" -- I'd like to have DejaVu, but it doesn't work
 
-theme.fg_normal  = "#cccccc"
-theme.fg_focus   = "#ffffff"
+theme.fg_normal  = "#664C04"
+theme.fg_focus   = "#F5B70F"
 theme.fg_urgent  = "#00ffff"
 
 theme.bg_normal  = "#000000"
@@ -52,12 +52,13 @@ theme.taglist_font        = theme.font
 
 theme.tasklist_font                 = theme.font
 theme.tasklist_disable_icon         = false
-theme.tasklist_bg_normal            = "png:" .. theme.icons .. "/panel/tasklist/normal.png"
-theme.tasklist_bg_focus             = "png:" .. theme.icons .. "/panel/tasklist/focus.png"
-theme.tasklist_bg_urgent            = "png:" .. theme.icons .. "/panel/tasklist/urgent.png"
-theme.tasklist_fg_focus             = "#ffffff"
-theme.tasklist_fg_urgent            = "#00ffff"
-theme.tasklist_fg_normal            = "#cccccc"
+-- inverted colors for tasklist
+theme.tasklist_bg_normal            = theme.fg_normal --"png:" .. theme.icons .. "/panel/tasklist/normal.png"
+theme.tasklist_bg_focus             = theme.fg_focus  --"png:" .. theme.icons .. "/panel/tasklist/focus.png"
+theme.tasklist_bg_urgent            = theme.fg_urgent --"png:" .. theme.icons .. "/panel/tasklist/urgent.png"
+theme.tasklist_fg_normal            = theme.bg_normal
+theme.tasklist_fg_focus             = theme.bg_focus
+theme.tasklist_fg_urgent            = theme.bg_urgent
 theme.tasklist_floating             = ""
 theme.tasklist_sticky               = ""
 theme.tasklist_ontop                = ""
